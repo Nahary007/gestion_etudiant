@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Inscription des étudiants</h1>
+
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+    <div class="mb-3">
+        {{ form_label(form.nom, null, {'class': 'form-label'}) }}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom'}}) }}
+        {{ form_errors(form.nom) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.prenom, null, {'class': 'form-label'}) }}
+        {{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le prénom'}}) }}
+        {{ form_errors(form.prenom) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.email, null, {'class': 'form-label'}) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'email'}}) }}
+        {{ form_errors(form.email) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.dateNaissance, null, {'class': 'form-label'}) }}
+        {{ form_widget(form.dateNaissance, {'attr': {'class': 'form-control', 'type': 'date'}}) }}
+        {{ form_errors(form.dateNaissance) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.adresse, null, {'class': 'form-label'}) }}
+        {{ form_widget(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'adresse'}}) }}
+        {{ form_errors(form.adresse) }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+{{ form_end(form) }}
+
+
+    <h2>Liste des étudiants</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etudiant in etudiants %}
+                <tr>
+                    <th scope="row">{{ etudiant.id }}</th>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>{{ etudiant.prenom }}</td>
+                    <td>{{ etudiant.email }}</td>
+                    <td><a href="{{ path('etudiant.edit', {id: etudiant.id }) }}" class="btn btn-primary">Mettre à jours</a></td>
+                    <td><a href="{{ path('etudiant.supprimer', {id: etudiant.id }) }}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucun étudiant trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
