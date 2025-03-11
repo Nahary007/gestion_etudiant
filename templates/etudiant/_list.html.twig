@@ -1,0 +1,14 @@
+{% for etudiant in etudiants %}
+    <tr>
+        <th scope="row">{{ etudiant.id }}</th>
+        <td>{{ etudiant.nom }}</td>
+        <td>{{ etudiant.prenom }}</td>
+        <td>{{ etudiant.email }}</td>
+        <td><a href="{{ path('etudiant.edit', {id: etudiant.id }) }}" class="btn btn-primary">Mettre à jour</a></td>
+        <td><a href="{{ path('etudiant.supprimer', {id: etudiant.id }) }}" class="btn btn-danger">Supprimer</a></td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="5">Aucun étudiant trouvé.</td>
+    </tr>
+{% endfor %}
