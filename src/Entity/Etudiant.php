@@ -1,20 +1,16 @@
 <?php
 
 namespace App\Entity;
-
-use App\Entity\Trait\EntityTimestampTrait;
+// use App\Entity\Trait\EntityTimestampTrait;
 use App\Repository\EtudiantRepository;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EtudiantRepository::class)]
-//appeler une entité reutilisable
-#[ORM\HasLifecycleCallbacks]
+// #[ORM\HasLifecycleCallbacks]
 class Etudiant
 {
-    //appeler une entité reutilisable
-    use EntityTimestampTrait;
+    // use EntityTimestampTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,12 +25,6 @@ class Etudiant
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateNaissance = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $adresse = null;
 
     public function getId(): ?int
     {
@@ -76,29 +66,4 @@ class Etudiant
 
         return $this;
     }
-
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
-        return $this->dateNaissance;
-    }
-
-    public function setDateNaissance(\DateTimeInterface $dateNaissance): static
-    {
-        $this->dateNaissance = $dateNaissance;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): static
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
 }

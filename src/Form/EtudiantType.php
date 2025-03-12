@@ -17,10 +17,6 @@ class EtudiantType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('email', EmailType::class)
-            ->add('dateNaissance', null, [
-                'widget' => 'single_text'
-            ])
-            ->add('adresse')
         ;
     }
 
